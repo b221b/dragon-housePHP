@@ -123,6 +123,7 @@ session_start();
             }
         </style>
 
+        <br><br><br><br><br>
         <?php
         // Проверяем, существует ли сессия
         if (isset($_SESSION['user'])) {
@@ -140,20 +141,13 @@ session_start();
                 // Получаем данные из результата
                 $user_data = mysqli_fetch_assoc($result);
 
-                // Выводим данные в красивом формате
-        ?>
-                <div class="user-profile">
-                    <h2>Профиль пользователя</h2>
-                    <ul>
-                        <li><strong>ID:</strong> <?= $user_data['ID'] ?></li>
-                        <li><strong>Логин:</strong> <?= $user_data['Login'] ?></li>
-                        <li><strong>Пароль:</strong> <?= $user_data['Password'] ?></li>
-                        <li><strong>E-mail:</strong> <?= $user_data['Mail'] ?></li>
-                        <li><strong>Аватар:</strong> <img src="<?= $user_data['Avatar'] ?>" alt="Аватар"></li>
-                        <li><strong>Дата рождения:</strong> <?= $user_data['Birthday'] ?></li>
-                    </ul>
-                </div>
-        <?php
+                // Выводим данные
+                echo "ID: " . $user_data['ID'] . "<br>";
+                echo "Login: " . $user_data['Login'] . "<br>";
+                echo "Password: " . $user_data['Password'] . "<br>";
+                echo "Mail: " . $user_data['Mail'] . "<br>";
+                echo "Avatar: " . $user_data['Avatar'] . "<br>";
+                echo "Birthday: " . $user_data['Birthday'] . "<br>";
             } else {
                 echo "Данные не найдены";
             }
@@ -165,6 +159,7 @@ session_start();
             header('Location: Login.php');
         }
         ?>
+        <br><br>
     </div>
     <!-- PROFILE END -->
 
