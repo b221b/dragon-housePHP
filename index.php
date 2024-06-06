@@ -275,7 +275,8 @@ include_once 'db.php';
   </div>
   <!-- services section end -->
   <!-- testimonial section start -->
-  <div class="client_section layout_padding">
+
+  <!-- <div class="client_section layout_padding">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -337,7 +338,61 @@ include_once 'db.php';
         </div>
       </div>
     </div>
+  </div> -->
+
+  <!-- testimonial section end -->
+
+  <!-- PHP test -->
+
+  <div class="client_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="client_taital">Отзывы</h1>
+          <p class="client_text">Отзывы наших любимых клиентов</p>
+        </div>
+      </div>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <?php
+        $already_shown = array(); // массив уже отображенных отзывов
+        for ($i = 0; $i < 3; $i++) {
+          do {
+            $sql = "SELECT * FROM Messages ORDER BY RAND() LIMIT 1";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+          } while (in_array($row['ID'], $already_shown));
+          $already_shown[] = $row['ID']; // добавляем отзыв в массив уже отображенных
+        ?>
+          <div class="carousel-item <?php if ($i == 0) echo 'active'; ?>">
+            <div class="client_section_2">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="testimonial_section_2">
+                      <h4 class="client_name_text"><?= htmlspecialchars($row['Name']) ?><span class="quick_icon"><img src="images/quick-icon.png"></span></h4>
+                      <p class="customer_text"><?= htmlspecialchars($row['Message']) ?></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php
+        }
+        ?>
+      </div>
+    </div>
   </div>
+
+  <!-- PHP test end -->
+
   <!-- testimonial section end -->
   <!-- contact section start -->
   <div class="contact_section layout_padding">
