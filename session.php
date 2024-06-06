@@ -7,8 +7,8 @@ if (isset($_SESSION['user'])) {
     // Получаем данные пользователя из сессионной переменной
     $user = $_SESSION['user'];
 
-    // Выводим приветствие для пользователя
-    echo "<span class='nav-link'>Привет, " . $user['Login'] . "!</span>";
+    // Выводим приветствие для пользователя с ссылкой на страницу профиля
+    echo "<span class='nav-link'><a href='profile.php'>Привет, " . $user['Login'] . "!</a></span>";
 } else {
     // Если сессии нет, перенаправляем пользователя на страницу авторизации
     header('Location: Login.php');
@@ -18,11 +18,15 @@ if (isset($_SESSION['user'])) {
 <form action="Logout.php" method="post" class="center">
     <input type="submit" value="Выйти" class="learnmore_bt">
 
-    <style кнопка выйти>
+    <style>
         .center {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        a {
+            color: #f76d37;
         }
     </style>
 </form>
