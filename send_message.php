@@ -10,9 +10,9 @@ $message = $_POST['Massage'];
 $sql = "INSERT INTO Messages (ID_User, Name, Mail, Message) VALUES (NULL, '$name', '$email', '$message')";
 
 if (mysqli_query($conn, $sql)) {
-  echo "Сообщение отправлено успешно!";
-  header('Location: index.php');
-  exit;
+  echo "<a href='index.php' style='font-size: 25px;'>Сообщение успешно отправлено!</a>";
+  // header('Location: index.php');
+  // exit;
 } else {
   echo "Ошибка отправки сообщения: ". mysqli_error($conn);
 }

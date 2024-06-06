@@ -264,7 +264,7 @@ button {
     color: white;
     font-size: 34px;
     font-weight: bold;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* header section end */
@@ -377,26 +377,33 @@ button {
     .banner_taital {
         padding: 40px 0px;
     }
+
     .outstanding_text {
         font-size: 40px;
     }
+
     .coffee_text {
         font-size: 50px;
     }
+
     .there_text {
         font-size: 12px;
     }
+
     .learnmore_bt {
         width: 120px;
     }
+
     .learnmore_bt a {
         padding: 5px 10px;
         font-size: 18px;
         height: 1%;
     }
+
     #main_slider a.carousel-control-next {
         top: 300px;
     }
+
     #main_slider a.carousel-control-prev {
         top: 300px;
     }

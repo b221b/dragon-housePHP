@@ -400,7 +400,7 @@ include_once 'db.php';
       <h1 class="contact_text">Связаться с нами</h1>
     </div>
   </div>
-
+  
   <div class="contact_section_2 layout_padding">
     <div class="container-fluid">
       <div class="row">
@@ -410,13 +410,13 @@ include_once 'db.php';
             <div class="email_text">
               <form action="send_message.php" method="post">
                 <div class="form-group">
-                  <input type="text" class="email-bt" placeholder="Имя" name="name">
+                  <input type="text" class="email-bt" placeholder="Имя" name="name" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="email-bt" placeholder="Почта" name="Email">
+                  <input type="text" class="email-bt" placeholder="Почта" name="Email" required>
                 </div>
                 <div class="form-group">
-                  <textarea class="massage-bt" placeholder="Сообщение" rows="5" id="comment" name="Massage"></textarea>
+                  <textarea class="massage-bt" placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
                 </div>
                 <div class="send_btn">
                   <div type="text" class="main_bt"><input type="submit" value="Отправить"></div>
