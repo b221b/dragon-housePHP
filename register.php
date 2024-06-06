@@ -1,9 +1,3 @@
-<style>
-    body{
-        background-image: url(../images/чайная_девушка2.jpg);
-    }
-</style>
-
 <?php
 include_once 'db.php';
 
