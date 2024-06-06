@@ -1,5 +1,9 @@
 <?php
 include_once 'db.php';
+
+// Инициализируем сессию
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +72,34 @@ include_once 'db.php';
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+              <?php
+              // Проверяем, существует ли сессия
+              if (isset($_SESSION['user'])) {
+                // Получаем данные пользователя из сессионной переменной
+                $user = $_SESSION['user'];
+
+                // Выводим приветствие для пользователя
+                echo "<span class='nav-link'>Привет, " . $user['Login'] . "!</span>";
+              } else {
+                // Если сессии нет, перенаправляем пользователя на страницу авторизации
+                header('Location: Login.php');
+              }
+              ?>
+
+              <form action="Logout.php" method="post" class="center">
+                <input type="submit" value="Выйти" class="learnmore_bt">
+                
+                <style кнопка выйти>
+                  .center {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  }
+                </style>
+              </form>
+              
             </li>
           </ul>
         </div>
@@ -400,7 +432,7 @@ include_once 'db.php';
       <h1 class="contact_text">Связаться с нами</h1>
     </div>
   </div>
-  
+
   <div class="contact_section_2 layout_padding">
     <div class="container-fluid">
       <div class="row">

@@ -72,33 +72,116 @@
     </div>
     <!--header section end -->
     <!-- REGISTRATION start -->
-    
+
     <div logreg>
+
         <!-- Форма регистрации -->
-        <form action="register.php" method="post">
-            <h2>Регистрация</h2>
-            <label for="login">Логин:</label>
-            <input type="text" id="login" name="login"><br><br>
-            <label for="mail">Email:</label>
-            <input type="email" id="mail" name="mail"><br><br>
-            <label for="avatar">Аватар:</label>
-            <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg"><br><br>
-            <label for="birthday">Дата рождения:</label>
-            <input type="date" id="birthday" name="birthday"><br><br>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Зарегистрироваться">
-        </form>
+        <style>
+            form {
+                width: 500px;
+                background-color: #fff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 0 auto;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"],
+            input[type="file"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            input[type="submit"] {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            #switch-button {
+                display: block;
+                margin: 20px auto;
+                width: 130px;
+                text-align: center;
+            }
+        </style>
+
+        <br><br><br><br><br><br>
+        <div id="registration-form">
+            <form action="register.php" method="post">
+                <h2>Регистрация</h2>
+                <label for="login">Логин:</label>
+                <input type="text" id="login" name="login"><br><br>
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" name="mail"><br><br>
+                <label for="avatar">Аватар:</label>
+                <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg"><br><br>
+                <label for="birthday">Дата рождения:</label>
+                <input type="date" id="birthday" name="birthday"><br><br>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Зарегистрироваться">
+
+            </form>
+        </div>
 
         <!-- Форма авторизации -->
-        <form action="login.php" method="post">
-            <h2>Авторизация</h2>
-            <label for="login">Логин:</label>
-            <input type="text" id="login" name="login"><br><br>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Войти">
-        </form>
+        <div id="login-form" style="display: none;">
+            <form action="login.php" method="post">
+                <h2>Авторизация</h2>
+                <label for="login">Логин:</label>
+                <input type="text" id="login" name="login"><br><br>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Войти">
+            </form>
+        </div>
+
+        <button id="switch-button">Войти</button>
+
+        <script>
+            const switchButton = document.getElementById("switch-button");
+            const registrationForm = document.getElementById("registration-form");
+            const loginForm = document.getElementById("login-form");
+
+            switchButton.addEventListener("click", () => {
+                if (registrationForm.style.display === "none") {
+                    registrationForm.style.display = "block";
+                    loginForm.style.display = "none";
+                    switchButton.innerText = "Войти";
+                } else {
+                    registrationForm.style.display = "none";
+                    loginForm.style.display = "block";
+                    switchButton.innerText = "Зарегистрироваться";
+                }
+            });
+        </script>
+
     </div>
 
     <!-- REGISTRATION end -->
