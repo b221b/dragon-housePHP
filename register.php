@@ -17,7 +17,7 @@ if (mysqli_query($conn, $query)) {
     // echo "Вы успешно зарегистрировались!";
     echo "<meta http-equiv='refresh' content='2; url=Index.php'>";
 } else {
-    // echo "Ошибка регистрации: ". mysqli_error($conn);
+    echo "Ошибка регистрации: ". mysqli_error($conn);
     echo "<body style='background-image: url(images/ОшибкаРегистрации.jpg);'>";
 }
 

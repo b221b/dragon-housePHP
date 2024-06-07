@@ -136,17 +136,16 @@
             <form action="register.php" method="post">
                 <h2>Регистрация</h2>
                 <label for="login">Логин:</label>
-                <input type="text" id="login" name="login"><br><br>
+                <input type="text" id="login" name="login" required><br><br>
                 <label for="mail">Email:</label>
-                <input type="email" id="mail" name="mail"><br><br>
+                <input type="email" id="mail" name="mail" required><br><br>
                 <label for="avatar">Аватар:</label>
-                <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg"><br><br>
+                <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg" required><br><br>
                 <label for="birthday">Дата рождения:</label>
-                <input type="date" id="birthday" name="birthday"><br><br>
+                <input type="date" id="birthday" name="birthday" required><br><br>
                 <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password"><br><br>
+                <input type="password" id="password" name="password" required><br><br>
                 <input type="submit" value="Зарегистрироваться">
-
             </form>
         </div>
 
@@ -155,9 +154,9 @@
             <form action="login.php" method="post">
                 <h2>Авторизация</h2>
                 <label for="login">Логин:</label>
-                <input type="text" id="login" name="login"><br><br>
+                <input type="text" id="login" name="login" required><br><br>
                 <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password"><br><br>
+                <input type="password" id="password" name="password" required><br><br>
                 <input type="submit" value="Войти">
             </form>
         </div>
