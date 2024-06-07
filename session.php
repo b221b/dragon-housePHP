@@ -11,6 +11,7 @@ if (isset($_SESSION['user'])) {
     echo "<span class='nav-link'><a href='profile.php'>Привет, " . $user['Login'] . "!</a></span>";
 } else {
     // Если сессии нет, перенаправляем пользователя на страницу авторизации
+    // echo "<span class='nav-link'><a href='profile.php'>Привет, anonymous!</a></span>";
     header('Location: Login.php');
 }
 ?>
