@@ -87,42 +87,7 @@ session_start();
 
     <!-- PROFILE -->
     <div ПРОФИЛЬ>
-        <style>
-            .user-profile {
-                background-color: #f9f9f9;
-                padding: 20px;
-                border: 1px solid #ddd;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .user-profile h2 {
-                margin-top: 0;
-            }
-
-            .user-profile ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .user-profile li {
-                margin-bottom: 10px;
-            }
-
-            .user-profile strong {
-                font-weight: bold;
-                color: #333;
-            }
-
-            .user-profile img {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                margin-right: 10px;
-            }
-        </style>
-
+        
         <br><br><br><br><br>
         <?php
         // Проверяем, существует ли сессия
