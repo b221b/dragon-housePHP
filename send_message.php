@@ -10,7 +10,8 @@ $message = $_POST['Massage'];
 $sql = "INSERT INTO Messages (ID_User, Name, Mail, Message) VALUES (NULL, '$name', '$email', '$message')";
 
 if (mysqli_query($conn, $sql)) {
-  echo "<a href='index.php' style='font-size: 25px;'>Сообщение успешно отправлено!</a>";
+  echo "<div style='font-size: 35px;'>Сообщение успешно отправлено!</div>";
+  echo "<meta http-equiv='refresh' content='2; url=Index.php'>";
   // header('Location: index.php');
   // exit;
 } else {

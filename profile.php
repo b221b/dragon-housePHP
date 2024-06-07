@@ -87,15 +87,16 @@ session_start();
 
     <!-- PROFILE -->
     <div ПРОФИЛЬ>
-        
+
         <br><br><br><br><br>
+        
         <?php
         // Проверяем, существует ли сессия
         if (isset($_SESSION['user'])) {
             // Получаем логин из сессионной переменной
             $login = $_SESSION['user']['Login'];
 
-            // Формируем запрос на выборку данных
+            // Формируем запрос на выборку данных из таблицы users
             $query = "SELECT ID, Login, Password, Mail, Avatar, Birthday FROM users WHERE login = '$login'";
 
             // Выполняем запрос
@@ -113,6 +114,22 @@ session_start();
                 echo "Mail: " . $user_data['Mail'] . "<br>";
                 echo "Avatar: " . $user_data['Avatar'] . "<br>";
                 echo "Birthday: " . $user_data['Birthday'] . "<br>";
+
+                // Формируем запрос на выборку сообщений из таблицы messages
+                $query_messages = "SELECT Message FROM messages WHERE name = '$login'";
+
+                // Выполняем запрос
+                $result_messages = mysqli_query($conn, $query_messages);
+
+                // Проверяем результат
+                if (mysqli_num_rows($result_messages) > 0) {
+                    echo "<h2>Коментарии пользователя:</h2>";
+                    while ($message = mysqli_fetch_assoc($result_messages)) {
+                        echo "Сообщение: " . $message['Message'] . "<br><br>";
+                    }
+                } else {
+                    echo "Сообщений не найдено";
+                }
             } else {
                 echo "Данные не найдены";
             }
@@ -124,6 +141,7 @@ session_start();
             header('Location: Login.php');
         }
         ?>
+
         <br><br>
     </div>
     <!-- PROFILE END -->
