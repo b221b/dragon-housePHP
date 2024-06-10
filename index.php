@@ -347,40 +347,40 @@ session_start();
     <div class="container-fluid">
       <div class="row">
 
-      <?php
-session_start();
+        <?php
+        session_start();
 
-// Получаем логин и почту пользователя из сессии
-if (isset($_SESSION['user'])) {
-    $login = $_SESSION['user']['Login'];
-    $email = $_SESSION['user']['Mail'];
-} else {
-    // Если сессии нет, перенаправляем пользователя на страницу авторизации
-    header('Location: Login.php');
-    exit;
-}
-?>
+        // Получаем логин и почту пользователя из сессии
+        if (isset($_SESSION['user'])) {
+          $login = $_SESSION['user']['Login'];
+          $email = $_SESSION['user']['Mail'];
+        } else {
+          // Если сессии нет, перенаправляем пользователя на страницу авторизации
+          header('Location: Login.php');
+          exit;
+        }
+        ?>
 
-<div class="col-md-6 padding_0">
-    <div class="mail_section">
-        <div class="email_text">
-            <form action="send_message.php" method="post">
+        <div class="col-md-6 padding_0">
+          <div class="mail_section">
+            <div class="email_text">
+              <form action="send_message.php" method="post">
                 <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Имя" name="name" value="<?php echo $login;?>" required>
+                  <input type="text" class="email-bt" placeholder="Имя" name="name" value="<?php echo $login; ?>" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="email-bt" placeholder="Почта" name="Email" value="<?php echo $email;?>" required>
+                  <input type="email" class="email-bt" placeholder="Почта" name="Email" value="<?php echo $email; ?>" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="massage-bt" placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
+                  <textarea class="massage-bt" placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
                 </div>
                 <div class="send_btn">
-                    <div type="text" class="main_bt"><input type="submit" value="Отправить"></div>
+                  <div type="text" class="main_bt"><input type="submit" value="Отправить"></div>
                 </div>
-            </form>
+              </form>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
 
         <div class="col-md-6 padding_0">
           <div class="map-responsive">
