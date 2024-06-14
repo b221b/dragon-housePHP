@@ -89,7 +89,7 @@ session_start();
     <div ПРОФИЛЬ>
 
         <br><br><br><br><br>
-        
+
         <?php
         // Проверяем, существует ли сессия
         if (isset($_SESSION['user'])) {
@@ -116,7 +116,7 @@ session_start();
                 echo "Birthday: " . $user_data['Birthday'] . "<br>";
 
                 // Формируем запрос на выборку сообщений из таблицы messages
-                $query_messages = "SELECT Message FROM messages WHERE name = '$login'";
+                $query_messages = "SELECT ID, Message FROM messages WHERE name = '$login'";
 
                 // Выполняем запрос
                 $result_messages = mysqli_query($conn, $query_messages);
@@ -125,7 +125,11 @@ session_start();
                 if (mysqli_num_rows($result_messages) > 0) {
                     echo "<h2>Коментарии пользователя:</h2>";
                     while ($message = mysqli_fetch_assoc($result_messages)) {
-                        echo "Сообщение: " . $message['Message'] . "<br><br>";
+                        echo "Сообщение: " . $message['Message'] . "<br>";
+                        echo "<form action='delete_message.php' method='post'>";
+                        echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
+                        echo "<input type='submit' value='Удалить'>";
+                        echo "</form><br><br>";
                     }
                 } else {
                     echo "Сообщений не найдено";
@@ -134,12 +138,7 @@ session_start();
                 echo "Данные не найдены";
             }
 
-            // Закрываем соединение
-            mysqli_close($conn);
-        } else {
-            // Если сессии нет, перенаправляем пользователя на страницу авторизации
-            header('Location: Login.php');
-        }
+        } 
         ?>
 
         <br><br>
