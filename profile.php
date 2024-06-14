@@ -108,12 +108,15 @@ session_start();
             .user-zagolovok {
                 font-size: 20px;
                 margin-bottom: 20px;
-                padding: 20px;
-                border-radius: 10px;
                 width: 60%;
                 margin-left: 20px;
                 font-weight: bold;
                 font-style: italic;
+                /* background-color: #4CAF50; */
+                color: black;
+                padding: 10px;
+                border: 1px solid black;
+                border-radius: 15px 0 15px 0;
             }
 
             .user-data span {
@@ -201,6 +204,26 @@ session_start();
             .send-message-form input[type="submit"]:hover {
                 background-color: #3e8e41;
             }
+
+            .message span {
+                font-weight: bold;
+                margin-right: 10px;
+            }
+
+            .message form input[type="submit"][value="Удалить"] {
+                background-color: #FF0000;
+                /* красный цвет */
+                color: #fff;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .message form input[type="submit"][value="Удалить"]:hover {
+                background-color: #CC0000;
+                /* темно-красный цвет */
+            }
         </style>
 
         <?php
@@ -246,9 +269,9 @@ session_start();
 
                 // Проверяем результат
                 if (mysqli_num_rows($result_messages) > 0) {
-                    // echo "<h2>Коментарии пользователя:</h2>";
                     while ($message = mysqli_fetch_assoc($result_messages)) {
-                        echo "Сообщение: " . $message['Message'] . "<br>";
+                        echo "<div class='message'>";
+                        echo "<span>Сообщение:</span> " . $message['Message'] . "<br>";
                         echo "<form action='delete_message.php' method='post'>";
                         echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
                         echo "<input type='submit' value='Удалить'>";
@@ -256,7 +279,8 @@ session_start();
                         echo "<form action='edit_message.php' method='post'>";
                         echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
                         echo "<input type='submit' value='Изменить'>";
-                        echo "</form><br><br>";
+                        echo "</form>";
+                        echo "</div><br><br>";
                     }
                 } else {
                     echo "Сообщений не найдено";
