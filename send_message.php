@@ -11,10 +11,10 @@ $sql = "INSERT INTO Messages (ID_User, Name, Mail, Message) VALUES (NULL, '$name
 
 if (mysqli_query($conn, $sql)) {
   if ($_SERVER['HTTP_REFERER'] == 'http://website/dragon-housePHP/profile.php') {
-    echo "<div style='font-size: 35px;'>Сообщение успешно отправлено!</div>";
+    // echo "<div style='font-size: 35px;'>Сообщение успешно отправлено!</div>";
     echo "<meta http-equiv='refresh' content='1; url=profile.php'>";
   } else {
-    echo "<div style='font-size: 35px;'>Сообщение успешно отправлено!</div>";
+    // echo "<div style='font-size: 35px;'>Сообщение успешно отправлено!</div>";
     echo "<meta http-equiv='refresh' content='1; url=Index.php'>";
   }
 } else {

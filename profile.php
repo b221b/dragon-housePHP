@@ -90,6 +90,108 @@ session_start();
 
         <br><br><br><br><br>
 
+        <style>
+            /* Стили для вывода данных пользователя */
+            .user-data {
+                font-size: 18px;
+                margin-bottom: 20px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                width: 60%;
+                margin-left: 20px;
+
+            }
+
+            .user-data span {
+                font-weight: bold;
+            }
+
+            /* Стили для вывода комментариев */
+            .messages {
+                margin-top: 20px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                width: 60%;
+                margin-left: 20px;
+
+            }
+
+            .messages h2 {
+                margin-bottom: 10px;
+            }
+
+            .message {
+                margin-bottom: 20px;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                
+            }
+
+            .message form {
+                display: inline-block;
+                margin-right: 10px;
+                
+            }
+
+            .message form input[type="submit"] {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .message form input[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+
+            /* Стили для формы отправки сообщения */
+            .send-message-form {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-left: 20px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                width: 60%;
+                
+            }
+
+            .send-message-form div {
+                margin-bottom: 10px;
+            }
+
+            .send-message-form input[type="text"],
+            .send-message-form input[type="email"],
+            .send-message-form textarea {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .send-message-form input[type="submit"] {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .send-message-form input[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+        </style>
+
         <?php
         // Проверяем, существует ли сессия
         if (isset($_SESSION['user'])) {
@@ -106,15 +208,20 @@ session_start();
             if (mysqli_num_rows($result) > 0) {
                 // Получаем данные из результата
                 $user_data = mysqli_fetch_assoc($result);
-
-                // Выводим данные
-                echo "ID: " . $user_data['ID'] . "<br>";
-                echo "Login: " . $user_data['Login'] . "<br>";
-                echo "Password: " . $user_data['Password'] . "<br>";
-                echo "Mail: " . $user_data['Mail'] . "<br>";
-                echo "Avatar: " . $user_data['Avatar'] . "<br>";
-                echo "Birthday: " . $user_data['Birthday'] . "<br>";
-
+        ?>
+                <div class="user-data">
+                    <?php
+                    // Выводим данные
+                    echo "ID: " . $user_data['ID'] . "<br>";
+                    echo "Login: " . $user_data['Login'] . "<br>";
+                    echo "Password: " . $user_data['Password'] . "<br>";
+                    echo "Mail: " . $user_data['Mail'] . "<br>";
+                    echo "Avatar: " . $user_data['Avatar'] . "<br>";
+                    echo "Birthday: " . $user_data['Birthday'] . "<br>";
+                    ?>
+                </div>
+                <div class="messages">
+            <?php
                 // Формируем запрос на выборку сообщений из таблицы messages
                 $query_messages = "SELECT ID, Message FROM messages WHERE name = '$login'";
 
@@ -142,33 +249,35 @@ session_start();
                 echo "Данные не найдены";
             }
         }
-        ?>
+            ?>
+                </div>
+                <div class="send-message-form">
+                    <?php
 
-        <?php
+                    // Получаем логин и почту пользователя из сессии
+                    if (isset($_SESSION['user'])) {
+                        $login = $_SESSION['user']['Login'];
+                        $email = $_SESSION['user']['Mail'];
+                    }
+                    ?>
 
-        // Получаем логин и почту пользователя из сессии
-        if (isset($_SESSION['user'])) {
-            $login = $_SESSION['user']['Login'];
-            $email = $_SESSION['user']['Mail'];
-        }
-        ?>
+                    <form action="send_message.php" method="post">
+                        <div>
+                            <input type="text" placeholder="Имя" name="name" value="<?php echo $login; ?>" required>
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Почта" name="Email" value="<?php echo $email; ?>" required>
+                        </div>
+                        <div>
+                            <textarea placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
+                        </div>
+                        <div>
+                            <div type="text"><input type="submit" value="Отправить"></div>
+                        </div>
+                    </form>
 
-        <form action="send_message.php" method="post">
-            <div>
-                <input type="text" placeholder="Имя" name="name" value="<?php echo $login; ?>" required>
-            </div>
-            <div>
-                <input type="email" placeholder="Почта" name="Email" value="<?php echo $email; ?>" required>
-            </div>
-            <div>
-                <textarea placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
-            </div>
-            <div>
-                <div type="text"><input type="submit" value="Отправить"></div>
-            </div>
-        </form>
-
-        <br><br>
+                    <br><br>
+                </div>
     </div>
     <!-- PROFILE END -->
 
