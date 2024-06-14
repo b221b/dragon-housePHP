@@ -108,12 +108,12 @@ session_start();
                 $user_data = mysqli_fetch_assoc($result);
 
                 // Выводим данные
-                echo "ID: ". $user_data['ID']. "<br>";
-                echo "Login: ". $user_data['Login']. "<br>";
-                echo "Password: ". $user_data['Password']. "<br>";
-                echo "Mail: ". $user_data['Mail']. "<br>";
-                echo "Avatar: ". $user_data['Avatar']. "<br>";
-                echo "Birthday: ". $user_data['Birthday']. "<br>";
+                echo "ID: " . $user_data['ID'] . "<br>";
+                echo "Login: " . $user_data['Login'] . "<br>";
+                echo "Password: " . $user_data['Password'] . "<br>";
+                echo "Mail: " . $user_data['Mail'] . "<br>";
+                echo "Avatar: " . $user_data['Avatar'] . "<br>";
+                echo "Birthday: " . $user_data['Birthday'] . "<br>";
 
                 // Формируем запрос на выборку сообщений из таблицы messages
                 $query_messages = "SELECT ID, Message FROM messages WHERE name = '$login'";
@@ -125,13 +125,13 @@ session_start();
                 if (mysqli_num_rows($result_messages) > 0) {
                     echo "<h2>Коментарии пользователя:</h2>";
                     while ($message = mysqli_fetch_assoc($result_messages)) {
-                        echo "Сообщение: ". $message['Message']. "<br>";
+                        echo "Сообщение: " . $message['Message'] . "<br>";
                         echo "<form action='delete_message.php' method='post'>";
-                        echo "<input type='hidden' name='id' value='". $message['ID']. "'>";
+                        echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
                         echo "<input type='submit' value='Удалить'>";
                         echo "</form>";
                         echo "<form action='edit_message.php' method='post'>";
-                        echo "<input type='hidden' name='id' value='". $message['ID']. "'>";
+                        echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
                         echo "<input type='submit' value='Изменить'>";
                         echo "</form><br><br>";
                     }
@@ -141,9 +141,32 @@ session_start();
             } else {
                 echo "Данные не найдены";
             }
+        }
+        ?>
 
-        } 
-       ?>
+        <?php
+
+        // Получаем логин и почту пользователя из сессии
+        if (isset($_SESSION['user'])) {
+            $login = $_SESSION['user']['Login'];
+            $email = $_SESSION['user']['Mail'];
+        }
+        ?>
+
+        <form action="send_message.php" method="post">
+            <div>
+                <input type="text" placeholder="Имя" name="name" value="<?php echo $login; ?>" required>
+            </div>
+            <div>
+                <input type="email" placeholder="Почта" name="Email" value="<?php echo $email; ?>" required>
+            </div>
+            <div>
+                <textarea placeholder="Сообщение" rows="5" id="comment" name="Massage" required></textarea>
+            </div>
+            <div>
+                <div type="text"><input type="submit" value="Отправить"></div>
+            </div>
+        </form>
 
         <br><br>
     </div>
