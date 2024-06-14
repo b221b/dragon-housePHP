@@ -105,6 +105,17 @@ session_start();
 
             }
 
+            .user-zagolovok {
+                font-size: 20px;
+                margin-bottom: 20px;
+                padding: 20px;
+                border-radius: 10px;
+                width: 60%;
+                margin-left: 20px;
+                font-weight: bold;
+                font-style: italic;
+            }
+
             .user-data span {
                 font-weight: bold;
             }
@@ -130,13 +141,13 @@ session_start();
                 margin-bottom: 20px;
                 padding: 10px;
                 border-bottom: 1px solid #ccc;
-                
+
             }
 
             .message form {
                 display: inline-block;
                 margin-right: 10px;
-                
+
             }
 
             .message form input[type="submit"] {
@@ -163,7 +174,7 @@ session_start();
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 border-radius: 10px;
                 width: 60%;
-                
+
             }
 
             .send-message-form div {
@@ -209,7 +220,9 @@ session_start();
                 // Получаем данные из результата
                 $user_data = mysqli_fetch_assoc($result);
         ?>
+
                 <div class="user-data">
+                    <div class="user-zagolovok">Пользовательские данные</div>
                     <?php
                     // Выводим данные
                     echo "ID: " . $user_data['ID'] . "<br>";
@@ -220,7 +233,10 @@ session_start();
                     echo "Birthday: " . $user_data['Birthday'] . "<br>";
                     ?>
                 </div>
+
                 <div class="messages">
+                    <div class="user-zagolovok">Коментарии пользователя</div>
+
             <?php
                 // Формируем запрос на выборку сообщений из таблицы messages
                 $query_messages = "SELECT ID, Message FROM messages WHERE name = '$login'";
@@ -230,7 +246,7 @@ session_start();
 
                 // Проверяем результат
                 if (mysqli_num_rows($result_messages) > 0) {
-                    echo "<h2>Коментарии пользователя:</h2>";
+                    // echo "<h2>Коментарии пользователя:</h2>";
                     while ($message = mysqli_fetch_assoc($result_messages)) {
                         echo "Сообщение: " . $message['Message'] . "<br>";
                         echo "<form action='delete_message.php' method='post'>";
@@ -251,7 +267,10 @@ session_start();
         }
             ?>
                 </div>
+
                 <div class="send-message-form">
+                    <div class="user-zagolovok">Оставить комментарий</div>
+
                     <?php
 
                     // Получаем логин и почту пользователя из сессии
