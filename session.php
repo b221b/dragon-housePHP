@@ -14,6 +14,7 @@ if (isset($_SESSION['user'])) {
     // echo "<span class='nav-link'><a href='profile.php'>Привет, anonymous!</a></span>";
     header('Location: Login.php');
 }
+
 ?>
 
 <form action="Logout.php" method="post" class="center">
@@ -24,6 +25,7 @@ if (isset($_SESSION['user'])) {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 10px;
         }
 
         a {
@@ -31,3 +33,9 @@ if (isset($_SESSION['user'])) {
         }
     </style>
 </form>
+
+<?php
+if (isset($_SESSION['user']) && $_SESSION['user']['Role'] == 3) {
+    echo '<form action="adminka.php" method="post" class="center"><input type="submit" value="Админка" class="learnmore_bt a"></form>';
+}
+?>

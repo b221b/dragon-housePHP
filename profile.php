@@ -332,6 +332,7 @@ session_start();
                     <br><br>
                 </div>
     </div>
+
     <!-- PROFILE END -->
 
     <!-- footer section start -->
