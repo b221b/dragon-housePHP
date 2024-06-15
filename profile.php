@@ -272,7 +272,7 @@ session_start();
                     while ($message = mysqli_fetch_assoc($result_messages)) {
                         echo "<div class='message'>";
                         echo "<span>Сообщение:</span> " . $message['Message'] . "<br>";
-                        echo "<form action='delete_message.php' method='post'>";
+                        echo "<form action='delete_message.php' method='post' onsubmit='return confirmDelete(this);'>";
                         echo "<input type='hidden' name='id' value='" . $message['ID'] . "'>";
                         echo "<input type='submit' value='Удалить'>";
                         echo "</form>";
@@ -291,6 +291,16 @@ session_start();
         }
             ?>
                 </div>
+
+                <script>
+                    function confirmDelete(form) {
+                        if (confirm("Уверены, что хотите удалить сообщение?")) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                </script>
 
                 <div class="send-message-form">
                     <div class="user-zagolovok">Оставить комментарий</div>
