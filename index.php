@@ -49,7 +49,7 @@ session_start();
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- <div class="logo"><a href="index.html"><img src="images/logo4.png"></a></div> -->
         <!-- <div class="logo"><a href="index.html">123</div> -->
-        <div class="logo">Дом Дракона</div>
+        <div class="logo" style="cursor: pointer;" onclick="location.href='Index.php';">Дом Дракона</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
