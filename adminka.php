@@ -104,6 +104,7 @@ session_start();
     while ($field = mysqli_fetch_array($fields)) {
       echo "<th>$field[0]</th>";
     }
+    echo "<th>Действия - <a href='add.php?table=$tableName'>Добавить</a></th>"; // добавляем кнопку добавить
     echo "</tr>";
 
     // Выборка данных из таблицы
@@ -113,6 +114,11 @@ session_start();
       foreach ($row as $cell) {
         echo "<td>$cell</td>";
       }
+      echo "<td>"; // добавляем ячейку для кнопок
+      echo "<a href='delete.php?table=$tableName&id={$row['ID']}'>Удалить</a> ";
+      echo " | "; // кнопка удалить
+      echo "<a href='edit.php?table=$tableName&id={$row['ID']}'>Изменить</a> ";
+      echo "</td>";
       echo "</tr>";
     }
 
