@@ -86,7 +86,7 @@ session_start();
   <!--header section end -->
 
   <!-- ADMINKA -->
-
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <?php
 
   // Получение списка таблиц в базе данных
