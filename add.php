@@ -1,49 +1,63 @@
 <?php
 include_once 'db.php';
 
-// Validate the table name
-$tableName = $_GET['table'];
-$allowedTables = array('category', 'Messages', 'tovar', 'Users'); // list of allowed tables
-if (!in_array($tableName, $allowedTables)) {
-    die('Invalid table name');
-}
+// Проверка и очистка имени таблицы из GET-параметра
+$tableName = isset($_GET['table']) ? mysqli_real_escape_string($conn, $_GET['table']) : '';
 
-// Создаем форму для добавления данных
-echo "<h2>Добавить данных в таблицу $tableName</h2>";
-echo "<form action='add.php' method='post'>";
-echo "<table border='1'>";
+if ($tableName) {
+    // Создание формы для добавления данных
+    echo "<h2>Добавление данных в таблицу $tableName</h2>";
+    echo "<form action='add.php' method='post'>";
+    echo "<input type='hidden' name='table' value='$tableName'>";
+    echo "<table border='1'>";
 
-// Получаем список полей для таблицы
-$fields = mysqli_query($conn, "SHOW COLUMNS FROM `$tableName`"); // escape the table name
-if ($fields) {
-    while ($field = mysqli_fetch_array($fields)) {
+    // Получение списка полей в таблице
+    $fields = mysqli_query($conn, "SHOW COLUMNS FROM `$tableName`");
+    if ($fields) {
+        $fieldNames = array();
+        while ($field = mysqli_fetch_array($fields)) {
+            $fieldName = $field['Field'];
+            echo "<tr>";
+            echo "<th>$fieldName</th>";
+            echo "<td><input type='text' name='$fieldName'></td>";
+            echo "</tr>";
+            $fieldNames[] = $fieldName;
+        }
+
         echo "<tr>";
-        echo "<th>". htmlspecialchars($field[0]). "</th>";
-        echo "<td><input type='text' name='". htmlspecialchars($field[0]). "'></td>";
+        echo "<td colspan='2'><input type='submit' value='Добавить'></td>";
         echo "</tr>";
+        echo "</table>";
+        echo "</form>";
+    } else {
+        echo "Ошибка: Невозможно получить информацию о полях таблицы.";
     }
-} else {
-    echo "Error: ". mysqli_error($conn);
 }
 
-echo "</table>";
-echo "<input type='submit' value='Добавить'>";
-echo "</form>";
-
-// Обработка формы
+// Обработка отправки формы
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Получаем данные из формы
-    $data = array();
+    $tableName = mysqli_real_escape_string($conn, $_POST['table']);
+    $fields = array();
+    $values = array();
     foreach ($_POST as $key => $value) {
-        $data[$key] = $conn->real_escape_string($value); // escape the values
+        if ($key != 'table') {
+            $fields[] = $key;
+            $values[] = "'" . mysqli_real_escape_string($conn, $value) . "'";
+        }
     }
 
-    // Добавляем данные в таблицу
-    $fields = implode(', ', array_keys($data));
-    $values = "'". implode("', '", $data). "'";
-    $query = "INSERT INTO `$tableName` ($fields) VALUES ($values)"; // escape the table name
-    mysqli_query($conn, $query);
-    echo "Данные добавлены успешно!";
+    $fieldsStr = implode(', ', $fields);
+    $valuesStr = implode(', ', $values);
+
+    $query = "INSERT INTO `$tableName` ($fieldsStr) VALUES ($valuesStr)";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        echo "Данные добавлены успешно!";
+        header('Location: adminka.php');
+    } else {
+        echo "Ошибка: Невозможно добавить данные в таблицу.";
+    }
 }
 
 // Закрытие соединения
