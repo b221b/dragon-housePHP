@@ -43,50 +43,8 @@ session_start();
 </head>
 
 <body>
-  <!--header section start -->
-  <div class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- <div class="logo"><a href="index.html"><img src="images/logo4.png"></a></div> -->
-        <!-- <div class="logo"><a href="index.html">123</div> -->
-        <div class="logo" style="cursor: pointer;" onclick="location.href='Index.php';">Дом Дракона</div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.php">Главная</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">О нас</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="gallery.php">Чаи</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="services.html">Сервисы</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Наши контакты</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-            </li>
-            <li class="nav-item">
-
-              <?php include_once 'session.php'; ?>
-
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-  <!--header section end -->
 
   <!-- ADMINKA -->
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <?php
 
   // Получение списка таблиц в базе данных
@@ -130,6 +88,48 @@ session_start();
   ?>
 
   <!-- ADMINKA END -->
+
+  <!--header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <div class="logo"><a href="index.html"><img src="images/logo4.png"></a></div> -->
+        <!-- <div class="logo"><a href="index.html">123</div> -->
+        <div class="logo" style="cursor: pointer;" onclick="location.href='Index.php';">Дом Дракона</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.php">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">О нас</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.php">Чаи</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Сервисы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Наши контакты</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+
+              <?php include_once 'session.php'; ?>
+
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!--header section end -->
 
   <!-- footer section start -->
   <div class="footer_section layout_padding">
