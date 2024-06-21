@@ -17,6 +17,9 @@ if ($tableName) {
         $fieldNames = array();
         while ($field = mysqli_fetch_array($fields)) {
             $fieldName = $field['Field'];
+            if ($field['Extra'] == 'auto_increment') {
+                continue; // Skip auto-increment fields
+            }
             echo "<tr>";
             echo "<th>$fieldName</th>";
             echo "<td><input type='text' name='$fieldName'></td>";
