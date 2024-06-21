@@ -22,7 +22,17 @@ if ($tableName) {
             }
             echo "<tr>";
             echo "<th>$fieldName</th>";
-            echo "<td><input type='text' name='$fieldName'></td>";
+            if ($fieldName == 'CategoryID') {
+                // Create a dropdown list for CategoryID
+                $categories = mysqli_query($conn, "SELECT ID, Name FROM category");
+                echo "<td><select name='CategoryID'>";
+                while ($category = mysqli_fetch_array($categories)) {
+                    echo "<option value='" . $category['ID'] . "'>" . $category['Name'] . "</option>";
+                }
+                echo "</select></td>";
+            } else {
+                echo "<td><input type='text' name='$fieldName'></td>";
+            }
             echo "</tr>";
             $fieldNames[] = $fieldName;
         }
