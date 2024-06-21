@@ -62,7 +62,7 @@ session_start();
                             <a class="nav-link" href="about.html">О нас</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="gallery.html">Галлерея</a>
+                            <a class="nav-link" href="gallery.php">Чаи</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="services.html">Сервисы</a>

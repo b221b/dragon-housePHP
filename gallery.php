@@ -54,7 +54,7 @@
                      <a class="nav-link" href="about.html">О нас</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="gallery.html">Галлерея</a>
+                     <a class="nav-link" href="gallery.php">Чаи</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="services.html">Сервисы</a>
@@ -81,14 +81,14 @@
       <div class="container">
          <div class="row">
             <div class="col-sm-12">
-               <h1 class="gallery_taital">Наша галерея</h1>
+               <h1 class="gallery_taital">Наши чаи</h1>
                <p class="gallery_text">Наш ассортимент включает в себя широкий спектр сортов, от знаменитого улуна до
                   редких и дорогих сортов пуэра. Мы также предлагаем различные аксессуары для чайной церемонии, такие
                   как чайники, чашки и блюдца.</p>
             </div>
          </div>
 
-         <div class="">
+         <!-- <div class="">
             <div class="gallery_section_2">
                <div class="row">
                   <div class="col-md-4">
@@ -140,11 +140,46 @@
                </div>
             </div>
          </div>
-         <div class="seemore_bt"><a href="#">Подробнее</a></div>
+         <div class="seemore_bt"><a href="#">Подробнее</a></div> -->
 
          <div выборка из бд>
 
             <style>
+               .category-block {
+                  margin-bottom: 20px;
+               }
+
+               .category-info {
+                  padding: 20px;
+               }
+
+               .category-info h2 {
+                  font-size: 24px;
+                  margin-top: 0;
+                  color: #333;
+               }
+
+               .category-info p {
+                  font-size: 16px;
+                  color: #666;
+               }
+
+               .category-info.label {
+                  font-weight: bold;
+                  color: #337ab7;
+               }
+
+               .category-info.value {
+                  font-size: 18px;
+                  color: #333;
+               }
+
+               .products-block {
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: center;
+               }
+
                .product-block {
                   background-color: #fff;
                   border-radius: 10px;
@@ -166,6 +201,7 @@
                   width: 100%;
                   height: 100%;
                   object-fit: cover;
+                  border-radius: 10px 10px 0 0;
                }
 
                .product-info {
@@ -183,12 +219,12 @@
                   color: #666;
                }
 
-               .product-info .label {
+               .product-info.label {
                   font-weight: bold;
                   color: #337ab7;
                }
 
-               .product-info .value {
+               .product-info.value {
                   font-size: 16px;
                   color: #333;
                }
@@ -228,9 +264,11 @@
                            while ($productRow = mysqli_fetch_assoc($productsResult)) {
                         ?>
                               <div class="product-block">
-
+                                 <div class="product-image">
+                                    <img src="images/пуэр.jpg <?php echo $productRow['Image']; ?>" alt="<?php echo $productRow['Name']; ?>">
+                                 </div>
                                  <div class="product-info">
-                                    <h2><?php echo $productRow['Name']; ?></h2>
+                                    <h2><a href="<?php echo $productRow['Image']; ?>"><?php echo $productRow['Name']; ?></a></h2>
                                     <p><span class="label">Описание:</span> <span class="value"><?php echo $productRow['Opisanie']; ?></span></p>
                                     <hr>
                                     <p><span class="label">Цена:</span> <span class="value"><?php echo $productRow['Price']; ?></span></p>
