@@ -31,8 +31,7 @@
    <!-- owl stylesheets -->
    <link rel="stylesheet" href="css/owl.carousel.min.css">
    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-      media="screen">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 
 <body>
@@ -43,8 +42,7 @@
             <!-- <div class="logo"><a href="index.html"><img src="images/logo4.png"></a></div> -->
             <!-- <div class="logo"><a href="index.html">123</div> -->
             <div class="logo">Дом Дракона</div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -84,6 +82,7 @@
                   как чайники, чашки и блюдца.</p>
             </div>
          </div>
+
          <div class="">
             <div class="gallery_section_2">
                <div class="row">
@@ -137,6 +136,100 @@
             </div>
          </div>
          <div class="seemore_bt"><a href="#">Подробнее</a></div>
+
+         <div выборка из бд>
+
+            <style>
+               .product-block {
+                  background-color: #fff;
+                  border-radius: 10px;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  padding: 20px;
+                  margin: 20px;
+                  width: 250px;
+                  display: inline-block;
+               }
+
+               .product-image {
+                  width: 100%;
+                  height: 150px;
+                  overflow: hidden;
+                  border-radius: 10px 10px 0 0;
+               }
+
+               .product-image img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+               }
+
+               .product-info {
+                  padding: 20px;
+               }
+
+               .product-info h2 {
+                  font-size: 18px;
+                  margin-top: 0;
+                  color: #333;
+               }
+
+               .product-info p {
+                  font-size: 14px;
+                  color: #666;
+               }
+
+               .product-info .label {
+                  font-weight: bold;
+                  color: #337ab7;
+               }
+
+               .product-info .value {
+                  font-size: 16px;
+                  color: #333;
+               }
+
+               hr {
+                  border-top: 2px solid #ccc;
+                  margin: 10px 0;
+               }
+            </style>
+
+            <?php
+            include_once 'db.php';
+
+            // Fetch data from tovar table and join with category table
+            $sql = "SELECT t.Name, t.Opisanie, t.Price, t.Kolichestvo, c.Name as CategoryName, c.Opisanie as CategoryOpisanie
+         FROM tovar t
+         JOIN category c ON t.CategoryID = c.ID";
+            $result = mysqli_query($conn, $sql);
+
+            // Check if there are any results
+            if (mysqli_num_rows($result) > 0) {
+               // Display data in a beautiful way
+               while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                  <div class="product-block">
+                     <div class="product-info">
+                        <h2><?php echo $row['Name']; ?></h2>
+                        <p><span class="label">Описание:</span> <span class="value"><?php echo $row['Opisanie']; ?></span></p>
+                        <p><span class="label">Цена:</span> <span class="value"><?php echo $row['Price']; ?> rub.</span></p>
+                        <p><span class="label">Количество:</span> <span class="value"><?php echo $row['Kolichestvo']; ?></span></p>
+                        <hr>
+                        <p><span class="label">Категория:</span> <span class="value"><?php echo $row['CategoryName']; ?></span></p>
+                        <p><span class="label">Описание категории:</span> <span class="value"><?php echo $row['CategoryOpisanie']; ?></span></p>
+                     </div>
+                  </div>
+            <?php
+               }
+            } else {
+               echo "No products found.";
+            }
+
+            // Close connection
+            mysqli_close($conn);
+            ?>
+
+         </div>
       </div>
    </div>
    <!-- gallery section end -->
