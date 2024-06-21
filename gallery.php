@@ -41,7 +41,7 @@
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <!-- <div class="logo"><a href="index.html"><img src="images/logo4.png"></a></div> -->
             <!-- <div class="logo"><a href="index.html">123</div> -->
-            <div class="logo">Дом Дракона</div>
+            <div class="logo" style="cursor: pointer;" onclick="location.href='Index.php';">Дом Дракона</div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,6 +64,11 @@
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                  </li>
+                  <li class="nav-item">
+
+                     <?php include_once 'session.php'; ?>
+
                   </li>
                </ul>
             </div>
@@ -139,6 +144,61 @@
 
          <div выборка из бд>
 
+            <style>
+               .product-block {
+                  background-color: #fff;
+                  border-radius: 10px;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  padding: 20px;
+                  margin: 20px;
+                  width: 250px;
+                  display: inline-block;
+               }
+
+               .product-image {
+                  width: 100%;
+                  height: 150px;
+                  overflow: hidden;
+                  border-radius: 10px 10px 0 0;
+               }
+
+               .product-image img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+               }
+
+               .product-info {
+                  padding: 20px;
+               }
+
+               .product-info h2 {
+                  font-size: 18px;
+                  margin-top: 0;
+                  color: #333;
+               }
+
+               .product-info p {
+                  font-size: 14px;
+                  color: #666;
+               }
+
+               .product-info .label {
+                  font-weight: bold;
+                  color: #337ab7;
+               }
+
+               .product-info .value {
+                  font-size: 16px;
+                  color: #333;
+               }
+
+               hr {
+                  border-top: 2px solid #ccc;
+                  margin: 10px 0;
+               }
+            </style>
+
             <?php
             include_once 'db.php';
 
@@ -155,12 +215,36 @@
                      <div class="category-info">
                         <h2><?php echo $row['Name']; ?></h2>
                         <p><span class="label">Описание:</span> <span class="value"><?php echo $row['Opisanie']; ?></span></p>
-                        <button class="btn-more" data-category-id="<?php echo $row['ID']; ?>">Подробнее</button>
                      </div>
-                  </div>
 
-                  <!-- Hidden div to display products for each category -->
-                  <div class="products-block" data-category-id="<?php echo $row['ID']; ?>" style="display: none;"></div>
+                     <!-- Display products for each category -->
+                     <div class="products-block" data-category-id="<?php echo $row['ID']; ?>">
+                        <?php
+                        // Fetch products for this category
+                        $sql = "SELECT * FROM tovar WHERE CategoryID = " . $row['ID'];
+                        $productsResult = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($productsResult) > 0) {
+                           while ($productRow = mysqli_fetch_assoc($productsResult)) {
+                        ?>
+                              <div class="product-block">
+
+                                 <div class="product-info">
+                                    <h2><?php echo $productRow['Name']; ?></h2>
+                                    <p><span class="label">Описание:</span> <span class="value"><?php echo $productRow['Opisanie']; ?></span></p>
+                                    <hr>
+                                    <p><span class="label">Цена:</span> <span class="value"><?php echo $productRow['Price']; ?></span></p>
+                                 </div>
+                              </div>
+                        <?php
+                           }
+                        } else {
+                           echo "<p>Нет в наличии</p>";
+                        }
+                        ?>
+                     </div>
+
+                  </div>
 
             <?php
                }
@@ -171,26 +255,6 @@
             // Close connection
             mysqli_close($conn);
             ?>
-
-            <script>
-               document.addEventListener("DOMContentLoaded", function() {
-                  const btnMore = document.querySelectorAll(".btn-more");
-                  btnMore.forEach(function(btn) {
-                     btn.addEventListener("click", function() {
-                        const categoryId = btn.getAttribute("data-category-id");
-                        const productsBlock = document.querySelector(`[data-category-id="${categoryId}"]`);
-
-                        // Send AJAX request to fetch products
-                        fetch(`fetch_products.php?category_id=${categoryId}`)
-                           .then(response => response.text())
-                           .then(html => {
-                              productsBlock.innerHTML = html;
-                              productsBlock.style.display = "block";
-                           });
-                     });
-                  });
-               });
-            </script>
 
          </div>
       </div>
