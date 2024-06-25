@@ -43,7 +43,18 @@ session_start();
 </head>
 
 <body>
+  <style>
+    .admin-header {
+      font-size: 36px;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
 
+  <div class="admin-header">Админка</div>
   <!-- ADMINKA -->
   <?php
 
