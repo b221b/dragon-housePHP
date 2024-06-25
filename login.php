@@ -20,12 +20,52 @@ if (mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_assoc($result);
     $_SESSION['user'] = $user;
 
-    echo "<body style='background-image: url(images/ТыЗарегался.png);'>";
-    // echo "Вы успешно авторизовались!";
-    echo "<meta http-equiv='refresh' content='2; url=Index.php'>";
+?>
+    <html>
+
+    <head>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f0f0f0;
+            }
+
+            .loader {
+                width: 50%;
+                /* адаптивный размер */
+                max-width: 200px;
+                /* максимальный размер */
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <img src="images/loadleave-leave.gif" class="loader" alt="Loading...">
+        <meta http-equiv="refresh" content="3; url=Index.php">
+    </body>
+
+    </html>
+<?php
 } else {
-    // echo "Ошибка авторизации: неверный логин или пароль";
-    echo "<meta http-equiv='refresh' content='2; url=logreg.php'>";
+?>
+    <html>
+
+    <head>
+        <meta http-equiv="refresh" content="2; url=logreg.php">
+    </head>
+
+    <body>
+        <!-- Ошибка авторизации: неверный логин или пароль -->
+    </body>
+
+    </html>
+<?php
 }
 
 // Закрываем соединение

@@ -13,12 +13,59 @@ $query = "INSERT INTO Users (Login, Mail, Avatar, Birthday, Password) VALUES ('$
 
 // Выполняем запрос
 if (mysqli_query($conn, $query)) {
-    echo "<body style='background-image: url(images/мушуЗарегайся.png);'>";
-    // echo "Вы успешно зарегистрировались!";
-    echo "<meta http-equiv='refresh' content='2; url=Index.php'>";
+    ?>
+    <html>
+    <head>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f0f0f0;
+            }
+            .loader {
+                width: 50%; /* адаптивный размер */
+                max-width: 200px; /* максимальный размер */
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="images/loadleave-leave.gif" class="loader" alt="Вы успешно зарегистрировались!">
+        <meta http-equiv="refresh" content="2; url=Index.php">
+    </body>
+    </html>
+    <?php
 } else {
-    echo "Ошибка регистрации: ". mysqli_error($conn);
-    echo "<body style='background-image: url(images/ОшибкаРегистрации.jpg);'>";
+    ?>
+    <html>
+    <head>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f0f0f0;
+            }
+            .loader {
+                width: 50%; /* адаптивный размер */
+                max-width: 200px; /* максимальный размер */
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="images/ОшибкаРегистрации.jpg" class="loader" alt="Ошибка регистрации">
+        <?php echo "Ошибка регистрации: ". mysqli_error($conn); ?>
+    </body>
+    </html>
+    <?php
 }
 
 // Закрываем соединение
