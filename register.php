@@ -13,8 +13,9 @@ $query = "INSERT INTO Users (Login, Mail, Avatar, Birthday, Password) VALUES ('$
 
 // Выполняем запрос
 if (mysqli_query($conn, $query)) {
-    ?>
+?>
     <html>
+
     <head>
         <style>
             body {
@@ -25,23 +26,29 @@ if (mysqli_query($conn, $query)) {
                 align-items: center;
                 background-color: #f0f0f0;
             }
+
             .loader {
-                width: 50%; /* адаптивный размер */
-                max-width: 200px; /* максимальный размер */
+                width: 50%;
+                /* адаптивный размер */
+                max-width: 200px;
+                /* максимальный размер */
                 height: auto;
                 margin: 0 auto;
             }
         </style>
     </head>
+
     <body>
         <img src="images/loadleave-leave.gif" class="loader" alt="Вы успешно зарегистрировались!">
-        <meta http-equiv="refresh" content="2; url=Index.php">
+        <meta http-equiv="refresh" content="<?php echo rand(2, 5); ?>; url=Index.php">
     </body>
+
     </html>
-    <?php
+<?php
 } else {
-    ?>
+?>
     <html>
+
     <head>
         <style>
             body {
@@ -52,20 +59,25 @@ if (mysqli_query($conn, $query)) {
                 align-items: center;
                 background-color: #f0f0f0;
             }
+
             .loader {
-                width: 50%; /* адаптивный размер */
-                max-width: 200px; /* максимальный размер */
+                width: 50%;
+                /* адаптивный размер */
+                max-width: 200px;
+                /* максимальный размер */
                 height: auto;
                 margin: 0 auto;
             }
         </style>
     </head>
+
     <body>
         <img src="images/ОшибкаРегистрации.jpg" class="loader" alt="Ошибка регистрации">
-        <?php echo "Ошибка регистрации: ". mysqli_error($conn); ?>
+        <?php echo "Ошибка регистрации: " . mysqli_error($conn); ?>
     </body>
+
     </html>
-    <?php
+<?php
 }
 
 // Закрываем соединение

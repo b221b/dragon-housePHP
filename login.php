@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) > 0) {
 
     <body>
         <img src="images/loadleave-leave.gif" class="loader" alt="Loading...">
-        <meta http-equiv="refresh" content="3; url=Index.php">
+        <meta http-equiv="refresh" content="<?php echo rand(2, 5); ?>; url=Index.php">
     </body>
 
     </html>
@@ -57,7 +57,7 @@ if (mysqli_num_rows($result) > 0) {
     <html>
 
     <head>
-        <meta http-equiv="refresh" content="2; url=logreg.php">
+        <meta http-equiv="refresh" content="0; url=logreg.php">
     </head>
 
     <body>
