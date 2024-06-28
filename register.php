@@ -4,7 +4,7 @@ include_once 'db.php';
 // Получаем данные из формы регистрации
 $login = $_POST['login'];
 $mail = $_POST['mail'];
-$avatar = $_FILES['avatar']['name'];
+// $avatar = $_FILES['avatar']['name'];
 $birthday = $_POST['birthday'];
 $password = $_POST['password'];
 

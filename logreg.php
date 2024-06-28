@@ -139,8 +139,10 @@
                 <input type="text" id="login" name="login" required><br><br>
                 <label for="mail">Email:</label>
                 <input type="email" id="mail" name="mail" required><br><br>
-                <label for="avatar">Аватар:</label>
-                <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg"><br><br>
+                
+                <!-- <label for="avatar">Аватар:</label>
+                <input type="file" id="avatar" name="avatar" accept=".png,.jpg,.jpeg"><br><br> -->
+                
                 <label for="birthday">Дата рождения:</label>
                 <input type="date" id="birthday" name="birthday" required><br><br>
                 <label for="password">Пароль:</label>

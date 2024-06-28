@@ -252,7 +252,7 @@ session_start();
                     echo "Login: " . $user_data['Login'] . "<br>";
                     echo "Password: " . $user_data['Password'] . "<br>";
                     echo "Mail: " . $user_data['Mail'] . "<br>";
-                    echo "Avatar: " . $user_data['Avatar'] . "<br>";
+                    // echo "Avatar: " . $user_data['Avatar'] . "<br>";
                     echo "Birthday: " . $user_data['Birthday'] . "<br>";
                     ?>
                 </div>
